@@ -62,7 +62,12 @@ const FormForComponent = Component.extend({
       set(this, 'tabindex', undefined);
 
       if (promise && typeof promise.finally === 'function') {
-        promise.finally(() => this.handleErrors(object));
+        promise.finally(() => {
+          if (this.isDestroyed || this.isDestroying) {
+            return;
+          }
+          this.handleErrors(object);
+        });
       } else {
         this.handleErrors(object);
       }
