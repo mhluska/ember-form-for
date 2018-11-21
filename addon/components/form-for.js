@@ -47,7 +47,7 @@ const FormForComponent = Component.extend({
             if (this.isDestroyed || this.isDestroying) {
               return;
             }
-            this.$().focus();
+            this.element.focus();
           });
           break;
         }
